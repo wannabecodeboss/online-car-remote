@@ -37,12 +37,12 @@
   <button id="right" class="button">Right</button>
   <button id="stop" class="button">Stop</button>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js"></script>
+  <!-- Firebase v8 SDK for Browser -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
   <script>
-    // Firebase Configuration
+    // Firebase Configuration (from your Firebase Console)
     const firebaseConfig = {
       apiKey: "AIzaSyDK1DNnSo5pSNX76YMpkRG0rBmXMHAhx0k",
       authDomain: "remote-control-car-online.firebaseapp.com",
@@ -54,8 +54,8 @@
     };
 
     // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const database = firebase.database(app);
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
 
     // Buttons to control car
     const forwardButton = document.getElementById("forward");
@@ -69,7 +69,7 @@
       firebase.database().ref('car/command').set(command);
     }
 
-    // Event Listeners for buttons
+    // Event listeners for buttons
     forwardButton.addEventListener("click", function() {
       sendCommand("forward");
     });
